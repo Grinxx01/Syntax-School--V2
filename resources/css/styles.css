@@ -1,0 +1,177 @@
+body {
+    font-family: "Quicksand", serif;
+    font-weight: normal;
+    font-style: normal;
+    display: grid;
+    grid-template-areas:
+        "header header header header header header"
+        "main main main main main main"
+        "footer footer footer footer footer footer";
+    grid-gap: 10px;
+    padding: 10px 7rem;
+}
+
+.header {
+    grid-area: header;
+}
+
+.head-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+}
+
+.nav-bar ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.nav-bar ul li {
+    margin: 0px 25px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+span {
+    color: #226597;
+}
+
+.login-method {
+    display: flex;
+    align-items: center;
+}
+
+.login-method p {
+    margin: 0px 15px;
+}
+
+.login {
+    border: solid 3px #226597;
+    transition: background-color 0.3s ease;
+    padding: 10px 15px;
+    margin: 0px 10px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.login:hover {
+    background: #226597;
+}
+
+.login p a:hover {
+    color: white;    
+}
+
+.sign-up {
+    border: solid 3px #226597;
+    background-color: #226597;
+    transition: background-color 0.3s ease;
+    padding: 10px 15px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.sign-up:hover {
+    background: white;
+}
+
+.sign-up p a {
+    color: white;
+}
+
+.sign-up p a:hover {
+    color: black;
+}
+
+.main {
+    grid-area: main;
+}
+
+.hero {
+    display: grid;
+    grid-template-areas:
+        "text img";
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.hero-container {
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-text {
+    grid-area: text;
+}
+
+.hero-img {
+    grid-area: img;
+}
+
+.hero-img img {
+    width: 100%;
+}
+
+.start-code {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.mulai h2 a {
+    background-color: #226597;
+    transition: background-color 0.3s ease;
+    padding: 7px 20px;
+    color: white;
+    border: solid 3px #226597;   
+}
+
+.mulai h2 a:hover {
+    background-color: white;
+    color: black;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.foot-container {
+    display: grid;
+    grid-template-areas:
+        "text1 text2"
+        "copyright copyright";
+    grid-gap: 10px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 40px 0;
+    
+}
+
+.foot-text {
+    grid-area: text1;
+}
+
+.foot-text-2 {
+    grid-area: text2;
+}
+
+.foot-cr {
+    grid-area: copyright;
+    text-align: center;
+}
+
+.socmed {
+    margin: 40px 0;
+}

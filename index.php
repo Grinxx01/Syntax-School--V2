@@ -36,5 +36,6 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             <?php include "views/components/footer.php"; ?>
         <?php endif; ?>
     <?php endif; ?>
+    <script src="resources/js/script.js"></script>
 </body>
 </html>

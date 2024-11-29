@@ -10,33 +10,58 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $judul = $_POST['judul'];
     $deskripsi = $_POST['deskripsi'];
-    $tipe_input = $_POST['tipe_input'];
-    $contoh_code = isset($_POST['contoh_code']) ? $_POST['contoh_code'] : null;
-    $file_path = null;
+    
+    $tipe_inputs = $_POST['tipe_input'];
+    $isi_materi = isset($_POST['isi_materi']) ? $_POST['isi_materi'] : [];
+    $contoh_code = isset($_POST['contoh_code']) ? $_POST['contoh_code'] : [];
+    $file_paths = [];
 
-    if ($tipe_input === 'file' && isset($_FILES['file'])) {
-        $target_dir = "uploads/";
-        $file_name = time() . "_" . basename($_FILES["file"]["name"]);
-        $target_file = $target_dir . $file_name;
+    foreach ($tipe_inputs as $index => $tipe_input) {
+        $file_path = null;
 
-        if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-            $file_path = $target_file;
-        } else {
-            echo "File gagal diupload.";
-            exit;
+        if ($tipe_input === 'file' && isset($_FILES['file_materi']['name'][$index])) {
+            $target_dir = "uploads/";
+            $file_name = time() . "_" . basename($_FILES["file_materi"]["name"][$index]);
+            $target_file = $target_dir . $file_name;
+
+            if (move_uploaded_file($_FILES["file_materi"]["tmp_name"][$index], $target_file)) {
+                $file_path = $target_file;
+                $file_paths[] = $file_path;
+            } else {
+                echo "File gagal diupload.";
+                exit;
+            }
+        }
+
+        $sql = "INSERT INTO upload_materi (judul, deskripsi, tipe_input, contoh_code, file_path, isi_materi) 
+                VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+
+        $judul_var = $judul;
+        $deskripsi_var = $deskripsi;
+        $tipe_input_var = $tipe_input;
+        $contoh_code_var = null;
+        $file_path_var = $file_path;
+        $isi_materi_var = null;
+
+        if ($tipe_input === 'text') {
+            $isi_materi_var = $isi_materi[$index];
+            $stmt->bind_param("sssss", $judul_var, $deskripsi_var, $tipe_input_var, $contoh_code_var, $isi_materi_var);
+        } elseif ($tipe_input === 'code') {
+            $contoh_code_var = $contoh_code[$index];
+            $isi_materi_var = $isi_materi[$index];
+            $stmt->bind_param("sssss", $judul_var, $deskripsi_var, $tipe_input_var, $contoh_code_var, $isi_materi_var);
+        } elseif ($tipe_input === 'file') { 
+            $stmt->bind_param("ssssss", $judul_var, $deskripsi_var, $tipe_input_var, $contoh_code_var, $file_path_var, $isi_materi_var);
+        }
+
+        if (!$stmt->execute()) {
+            echo "Gagal menyimpan materi: " . $stmt->error;
         }
     }
 
-    $sql = "INSERT INTO upload_materi (judul, deskripsi, tipe_input, contoh_code, file_path) 
-            VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $judul, $deskripsi, $tipe_input, $contoh_code, $file_path);
-
-    if ($stmt->execute()) {
-        header("Location: index.php?page=admin/admin");
-    } else {
-        echo "Gagal menyimpan materi.";
-    }
+    header("Location: index.php?page=admin/admin");
+    exit;
 
     $stmt->close();
     $conn->close();

@@ -16,13 +16,14 @@ $is_admin_logged_in = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
                 <ul>
                     <li><a href="?page=admin/admin">Dashboard</a></li>
                     <li><a href="?page=admin/upload_materi">Upload Materi</a></li>
+                    <li><a href="?page=admin/upload_quiz">Upload Quiz</a></li>
                 </ul>
             </nav>
         <?php else: ?>
             <nav class="nav-bar">
                 <ul>
+                    <li><a href="?page=home">Home</a></li>
                     <li><a href="?page=tutorial">Tutorials</a></li>
-                    <li><a href="?page=latihan">Latihan</a></li>
                     <li><a href="?page=quiz">Quiz</a></li>
                 </ul>
             </nav>

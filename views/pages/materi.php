@@ -27,7 +27,6 @@ if (isset($_GET['id'])) {
         <h1>Materi: <?php echo htmlspecialchars($materi['judul']); ?></h1>
         <p><?php echo nl2br(htmlspecialchars($materi['deskripsi'])); ?></p>
 
-        <!-- Jika materi berupa kode -->
         <?php if ($materi['tipe_input'] === 'code' && !empty($materi['contoh_code'])): ?>
             <div class="code-example">
                 <h4>Contoh Kode:</h4>
@@ -35,7 +34,6 @@ if (isset($_GET['id'])) {
             </div>
         <?php endif; ?>
 
-        <!-- Jika materi berupa file -->
         <?php if ($materi['tipe_input'] === 'file' && !empty($materi['file_path'])): ?>
             <div class="file-download">
                 <h4>Download Materi:</h4>
@@ -46,3 +44,4 @@ if (isset($_GET['id'])) {
 </main>
 
 <?php $conn->close(); ?>
+<script src="resources/js/script.js"></script>

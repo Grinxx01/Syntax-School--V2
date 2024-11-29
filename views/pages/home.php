@@ -29,6 +29,7 @@ $result = $conn->query($sql);
             <h1 id="mulai">Ayo Mulai Ngoding</h1>
             <p>Pilih Bahasa Pemrograman yang ingin Kamu Pelajari.</p>
         </div>
+    </div>
         <div class="materi-cards">
         <?php if ($result->num_rows > 0): ?>
             <?php while($row = $result->fetch_assoc()): ?>
@@ -44,5 +45,5 @@ $result = $conn->query($sql);
             <p>Belum ada materi yang diunggah.</p>
         <?php endif; ?>
         </div>
-    </div>
 </div>
+<script src="resources/js/script.js"></script>

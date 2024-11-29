@@ -1,7 +1,6 @@
 <?php
 include_once 'config/db.php';
 
-// Pastikan koneksi berhasil
 if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
@@ -9,7 +8,6 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM upload_materi ORDER BY created_at DESC";
 $result = $conn->query($sql);
 
-// Cek apakah query berhasil dijalankan
 if (!$result) {
     die("Query gagal: " . $conn->error);
 }
@@ -37,3 +35,4 @@ if (!$result) {
         <?php endif; ?>
     </div>
 </main>
+<script src="resources/js/script.js"></script>

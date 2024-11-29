@@ -1,54 +1,20 @@
 CREATE DATABASE syntax_school;
 USE syntax_school;
 
--- Data Siswa
-CREATE TABLE students (
+CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    enrolled_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user') DEFAULT 'user'
 );
 
--- Modul Pembelajaran
-CREATE TABLE modules (
+CREATE TABLE upload_materi (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    course_id INT NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    content TEXT NOT NULL,
-    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
-);
-
--- Kuis
-CREATE TABLE quizzes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    module_id INT NOT NULL,
-    question TEXT NOT NULL,
-    option_a VARCHAR(255) NOT NULL,
-    option_b VARCHAR(255) NOT NULL,
-    option_c VARCHAR(255) NOT NULL,
-    option_d VARCHAR(255) NOT NULL,
-    correct_option CHAR(1) NOT NULL,
-    FOREIGN KEY (module_id) REFERENCES modules(id) ON DELETE CASCADE
-);
-
--- Hasil Kuis
-CREATE TABLE quiz_results (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT NOT NULL,
-    quiz_id INT NOT NULL,
-    selected_option CHAR(1) NOT NULL,
-    is_correct BOOLEAN NOT NULL,
-    completed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
-    FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
-);
-
--- Sertifikat
-CREATE TABLE certificates (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT NOT NULL,
-    course_id INT NOT NULL,
-    issued_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
-    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+    judul VARCHAR(255) NOT NULL,
+    deskripsi TEXT NOT NULL,
+    tipe_input ENUM('text', 'code', 'file') NOT NULL,
+    contoh_code TEXT,
+    file_path VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

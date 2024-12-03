@@ -41,7 +41,7 @@ function addInput() {
         </select>
 
         <div class="additional_input"></div>
-        <button type="button" onclick="removeInput(this)">Hapus</button>
+        <button type="button" onclick="removeInput(this)" class="rmv-btn">Hapus</button>
     `;
     
     dynamicInputsDiv.appendChild(newInputGroup);
@@ -92,22 +92,24 @@ function handleInputChange(selectElement) {
             <input type="text" name="questions[]" id="question-${questionCounter}" required>
             <div class="options">
                 <label for="option-a-${questionCounter}">Opsi A:</label>
-                <input type="text" name="options[${questionCounter}][]" id="option-a-${questionCounter}" required>
+                <input type="text" name="options[${questionCounter - 1}][]" id="option-a-${questionCounter}" required>
                 <label for="option-b-${questionCounter}">Opsi B:</label>
-                <input type="text" name="options[${questionCounter}][]" id="option-b-${questionCounter}" required>
+                <input type="text" name="options[${questionCounter - 1}][]" id="option-b-${questionCounter}" required>
                 <label for="option-c-${questionCounter}">Opsi C:</label>
-                <input type="text" name="options[${questionCounter}][]" id="option-c-${questionCounter}" required>
+                <input type="text" name="options[${questionCounter - 1}][]" id="option-c-${questionCounter}" required>
                 <label for="option-d-${questionCounter}">Opsi D:</label>
-                <input type="text" name="options[${questionCounter}][]" id="option-d-${questionCounter}" required>
+                <input type="text" name="options[${questionCounter - 1}][]" id="option-d-${questionCounter}" required>
             </div>
+            <div class="correct-answer">
             <label for="answer-${questionCounter}">Jawaban Benar:</label>
-            <select name="answers[]" id="answer-${questionCounter}" required>
+            <select name="correct_answers[]" id="answer-${questionCounter}" required>
                 <option value="A">A</option>
                 <option value="B">B</option>
                 <option value="C">C</option>
                 <option value="D">D</option>
             </select>
-            <button type="button" onclick="removeQuestion(${questionCounter})">Hapus Pertanyaan</button>
+            </div>
+            <button type="button" onclick="removeQuestion(${questionCounter})" class="rmv-btn">Hapus Pertanyaan</button>
         `;
 
         questionList.appendChild(questionWrapper);
@@ -120,3 +122,18 @@ function handleInputChange(selectElement) {
         }
     };
 })();
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const navBar = document.querySelector('.nav-bar');
+    const loginMethod = document.querySelector('.login-method');
+
+    hamburger.addEventListener('click', () => {
+        const isActive = hamburger.classList.toggle('is-active');
+        navBar.classList.toggle('show', isActive);
+        loginMethod.classList.toggle('show', isActive);
+    });
+});
+
+

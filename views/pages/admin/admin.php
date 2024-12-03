@@ -20,7 +20,7 @@ $resultQuiz = $conn->query($sqlQuiz);
 
 ?>
 
-<div class="container">
+<div class="admin-container">
     <h1>Admin Dashboard</h1>
     <p>Selamat datang, admin!</p>
 </div>
@@ -82,8 +82,7 @@ $resultQuiz = $conn->query($sqlQuiz);
                         <td><?php echo htmlspecialchars($row['materi']); ?></td>
                         <td><?php echo htmlspecialchars($row['jumlah_pertanyaan']); ?></td>
                         <td><?php echo htmlspecialchars($row['created_at']); ?></td>
-                        <td>
-                            <a href="index.php?page=admin/view_quiz&id=<?php echo $row['id']; ?>">Lihat</a> | 
+                        <td> 
                             <a href="index.php?page=admin/delete_quiz&quiz_id=<?php echo $row['id']; ?>" onclick="return confirm('Yakin ingin menghapus quiz ini?');">Hapus</a>
                         </td>
                     </tr>

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="admin-container">
     <h1>Upload Materi</h1>
     <form action="process_upload_materi.php" method="POST" enctype="multipart/form-data" class="form">
         <label for="judul">Judul Materi:</label>
@@ -12,18 +12,17 @@
             <div class="input_section">
                 <label for="tipe_input">Tipe Input:</label>
                 <select name="tipe_input[]" onchange="handleInputChange(this)" required>
-                    <option value="">Pilih Tipe Input</option>
+                    <option value="" selected disabled>Pilih Tipe Input</option>
                     <option value="text">Text</option>
                     <option value="code">Code</option>
                     <option value="file">File</option>
                 </select>
 
                 <div class="additional_input"></div>
-                <button type="button" onclick="removeInput(this)">Hapus</button>
+                <button type="button" onclick="removeInput(this)" class="rmv-btn">Hapus</button>
             </div>
         </div>
-
-        <button type="button" onclick="addInput()">Tambah Input</button>
+        <button type="button" onclick="addInput()" class="add-btn">Tambah Input</button>
         <button type="submit" class="btn">Upload</button>
     </form>
 </div>

@@ -58,7 +58,7 @@ if ($completed > 0) {
     $questions = $stmt->get_result();
     ?>
     
-    <form method="POST">
+    <form method="POST" class="question-form">
         <?php while ($question = $questions->fetch_assoc()): ?>
             <div>
                 <p><?php echo htmlspecialchars($question['question']); ?></p>

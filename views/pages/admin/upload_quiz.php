@@ -40,12 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
+<div class="admin-container">
 <h1>Upload Quiz</h1>
 <form method="POST" class="form">
     <label for="materi_id">Pilih Materi:</label>
     <select name="materi_id" id="materi_id" required>
-        <option value="">-- Pilih Materi --</option>
+        <option value="" disabled selected>-- Pilih Materi --</option>
         <?php while ($row = $resultMateri->fetch_assoc()): ?>
             <option value="<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['judul']); ?></option>
         <?php endwhile; ?>
@@ -67,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="options[0][]" id="option-d-1" required>
             </div>
 
+            <div class="correct-answer">
             <label for="answer-1">Jawaban Benar:</label>
             <select name="correct_answers[]" id="answer-1" required>
                 <option value="A">A</option>
@@ -74,10 +75,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <option value="C">C</option>
                 <option value="D">D</option>
             </select>
+            </div>
         </div>
     </div>
 
-    <button type="button" onclick="addQuestion()">Tambah Pertanyaan</button><br>
-    <button type="submit">Simpan Quiz</button>
+    <button type="button" onclick="addQuestion()" class="add-btn">Tambah Pertanyaan</button><br>
+    <button type="submit" class="btn">Simpan Quiz</button>
 </form>
 <script src="resources/js/script.js"></script>
+
+</div>

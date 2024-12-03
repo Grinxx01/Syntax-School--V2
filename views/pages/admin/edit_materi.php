@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<div class="container">
+<div class="admin-container">
     <h1>Edit Materi</h1>
     <form method="POST" class="form" enctype="multipart/form-data">
         <label>Judul:</label>

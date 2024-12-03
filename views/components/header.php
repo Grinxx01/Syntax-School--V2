@@ -11,6 +11,13 @@ $is_admin_logged_in = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
                 <h1><span>S</span>yntax<span>S</span>chool</h1>
             </a>
         </div>
+
+        <button class="hamburger hamburger--squeeze" type="button">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+        
         <?php if ($is_admin_logged_in): ?>
             <nav class="nav-bar">
                 <ul>
